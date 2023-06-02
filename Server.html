@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Staff Management</title>
+    <link rel="stylesheet" type="text/css" href="server.css">
+  </head>
+
+   
+  <body>
+
+    <header>
+      <nav>      
+        <h1>TASS</h1>  
+        <!-- <ul>
+          <li><a href="#"> <b>Home</b></a></li>
+          <li><a href="#"> <b>About Us</b></a></li>
+          <li><a href="#">  <b>Contact</b></a></li>
+        </ul>   -->
+      </nav>
+
+
+      <button type="button"> Login!</button>  
+    </header>
+    
+    <h1>Staff List</h1>
+    <div id="staff-container"></div>
+
+    <script>
+      // JSON data with staff information
+      const staffData = {
+        "staff": [
+          {
+            "name": "Jane Doe",
+            "department": "Math",
+            "status": null
+          },
+          
+          {
+            "name": "Random Teacher",
+            "department": "Guidance",
+            "status": null
+          },
+          {
+            "name": "Best Class",
+            "department": "Mechatronics",
+            "status": null
+          },
+          {
+            "name": "Julius Caesar",
+            "department": "SocStudies",
+            "status": null
+          },
+          {
+            "name": "Issac Newton",
+            "department": "Physics",
+            "status": null
+          },
+
+        ]
+      };
+
+      // Get the staff container element
+
+      const staffContainer = document.getElementById("staff-container");
+
+      // Create a div for each staff member and add it to the container
+      staffData.staff.forEach((staffMember) => {
+        const staffDiv = document.createElement("div");
+        staffDiv.classList.add("staff-member");
+        staffDiv.innerHTML = `
+
+          <h2>${staffMember.name}</h2>
+          <p>Department: ${staffMember.department}</p>
+          <button class="status-button" data-status="${staffMember.status}">Status: ${
+          staffMember.status ? staffMember.status : "?"
+        }</button>
+
+
+        `;
+        staffContainer.appendChild(staffDiv);
+      });
+
+      // Add event listener to status buttons to update status on click
+      const statusButtons = document.querySelectorAll(".status-button");
+      statusButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const newStatus = prompt("Enter new status:");
+          button.setAttribute("data-status", newStatus);
+          button.textContent = `Status: ${newStatus ? newStatus : "?"}`;
+        
+        });
+
+      });
+  
+  
+  </script>
+  </body>
+</html>
